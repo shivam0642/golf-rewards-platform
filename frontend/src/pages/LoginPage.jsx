@@ -15,7 +15,7 @@ export default function LoginPage() {
       const response = await apiPost('/auth/login', form);
       setAuthToken(response.token);
       setUser(response.user);
-      navigate('/dashboard');
+      navigate(response.user.role === 'ADMINISTRATOR' ? '/admin' : '/dashboard');
     } catch (err) {
       setError(err.message);
     }
